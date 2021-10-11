@@ -1,0 +1,107 @@
+\RequirePackage[russian]{babel}
+\RequirePackage[utf8]{inputenc}
+\RequirePackage{multicol}
+\RequirePackage{graphicx}
+\RequirePackage{amsmath}
+\RequirePackage[useregional,calc]{datetime2}
+\setlength{\parindent}{0pt}
+\usepackage{tikz}
+
+\def\shortyearstart#1{\expandafter\shortyearhelperstart#1}
+\def\shortyearfinish#1{\expandafter\shortyearhelperfinish#1}
+\def\shortyearhelperfinish#1#2#3#4{#3#4}
+\def\shortyearhelperstart#1#2#3#4{#1#2}
+
+\renewcommand\daterussian{
+	\def\today{
+		\DTMsavenow{thisone}
+		<<\underline{\hspace{5pt}\DTMfetchday{thisone}\hspace{7pt}\vphantom{p}}>> \underline{\hspace{10pt}\DTMrussianmonthname{\DTMfetchmonth{thisone}}\hspace{10pt}\vphantom{pl}} \shortyearstart{\the\year}\underline{\hspace{5pt}\vphantom{p}\shortyearfinish{\the\year}\hspace{5pt}} г.	
+	}
+}
+
+\newcommand\fefurule[3]{ %рисование двойной черты
+	
+	\rule{\linewidth}{ #1 }
+	
+	\vspace{\dimexpr - \baselineskip + 1mm - 1pt + #3}
+
+	\rule{\linewidth}{ #2 }
+}
+
+\newcommand\fefupage[5]{
+	\thispagestyle{empty}
+	\parindent=0pt
+	
+	{\centering
+		%\vspace*{-3.7cm} %если требуется убрать геомерию
+		{\includegraphics[height=1.7cm]{dvfu.png}}
+		
+		{\fontsize{9}{9} \selectfont МИНИСТЕРСТВО НАУКИ И ВЫСШЕГО ОБРАЗОВАНИЯ РОССИЙСКОЙ ФЕДЕРАЦИИ}
+		{\fontsize{10}{10} \selectfont Федеральное государственное автономное образовательное учреждение высшего образования}
+		\textbf{<<Дальневосточный федеральный университет>>}
+		
+		\textbf{(ДВФУ)}
+	
+	}
+	\fefurule{3pt}{1pt}{0pt}
+	
+	{\centering
+			\textbf{
+				ИНСТИТУТ МАТЕМАТИКИ И КОМПЬЮТЕРНЫХ ТЕХНОЛОГИЙ
+				\\\vspace{19pt}
+				Депортамент информатики, математического и компьютерного моделирования
+				\vspace{37pt}\\
+			}
+			\textbf{ОТЧЕТ}
+			\\\vspace{19pt}
+			#3 по дисциплине
+			
+			<<#5>>
+			\\\vspace{19pt}
+			Направление подготовки
+			
+			01.03.02 <<Прикладная математика и информатика>>
+	
+	}
+	\vspace{14pt}
+	\begin{multicols}{2}
+		\vfill{\null}
+		\columnbreak
+		{
+			Выполнил студен#4
+			
+			группы #2
+			
+			\vspace{5pt}
+			
+			\begin{tikzpicture} %здесь можно отредачить отступы твоей подписи и ФИО
+				\draw (0, 0) node[inner sep=0] {$\underset{\textit{(ФИО)}}{\hspace{7pt}\underline{\text{#1}\vphantom{pl}\hspace{7pt}}\hspace{5pt}} $};
+				\draw (3.7, 0) node[inner sep=0] {$\underset{\textit{(подпись)}}{\underline{\vphantom{pl}\hspace{4cm}}}$};
+				\draw (3.7, 0.4) node[inner sep=0] {\includegraphics[width=4cm]{signature.png}};	
+			\end{tikzpicture}
+			
+			%Проверил Доцент, к.ф.-м.н
+			
+			%\vspace{10pt}
+			
+			%$ \underset{\textit{(ФИО)}}{\hspace{7pt}\underline{\text{Имя препода.}\vphantom{pl}\hspace{7pt}}\hspace{5pt}} $
+			%$ \underset{\textit{(подпись)}}{\underline{\vphantom{p}\hspace{3cm}}} $
+			
+			\vspace{10pt}
+			
+			\today
+			
+		}
+	\end{multicols}
+
+	\vfill{\null}
+	{
+		\centering
+		\textbf{г. Владивосток}
+		
+		\textbf{2021}
+			
+	}
+	%\vspace*{-2cm} %если требуется убрать геомерию
+	\pagebreak
+}
