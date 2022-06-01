@@ -1,9 +1,10 @@
 \documentclass[a4paper,fleqn,14pt,titlepage]{extarticle}
 \usepackage[russian]{babel}
 \usepackage[utf8]{inputenc}
-\usepackage{tabularx}
+\usepackage{tabularx} % работа с таблицами https://ru.overleaf.com/learn/latex/Tables
 \usepackage{mathtools}
 \usepackage{dvfu_titul_page}
+\usepackage{cmap} %чтобы можно было текст копировать
 
 \usepackage{graphicx}
 \usepackage{caption}
@@ -61,6 +62,11 @@
 	\addcontentsline{toc}{subsection}{#1}
 }
 
+\newcommand{\mysubsubsection}[1]{ %создание подподзаголовка
+	\subsubsection*{#1}
+	\addcontentsline{toc}{subsubsection}{#1}
+}
+
 \newcommand{\mypicture}[2]{ %вставка картинки с описанием
 	\begin{figure}[h]
 		\center
@@ -74,6 +80,15 @@
 		\textit{Характеристика:} & #1\\
 	\end{tabular}
 }
+
+\newcommand{\intl}{\int\limits}
+\newcommand{\abs}[1]{\left\vert #1 \right\vert}
+\newcommand{\norm}[1]{\left\Vert #1 \right\Vert}
+\newcommand{\Lp}{\mathrm{L}}
+\newcommand{\Yp}{\mathrm{Y}}
+\newcommand{\Up}{\mathrm{U}}
+\newcommand{\Lg}{\mathcal{L}}
+\DeclareMathOperator*\lowlim{\underline{lim}}
 
 \begin{document}
 	\fefupage{Середа С.}{Б9119-01.03.02систпро}{к лабораторной работе №1}{т}{Вычислительная математика}
