@@ -1,0 +1,124 @@
+\documentclass[a4paper,fleqn,14pt,titlepage]{extarticle}
+\usepackage[english,russian]{babel}
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+
+\usepackage{indentfirst} %отступ для первого абзаца
+\usepackage{main_style} %подключение титульника
+\linespread{1.1}
+
+\usepackage{cmap} %чтобы можно было текст копировать
+
+\usepackage{amssymb,amsfonts,amsmath,mathtext,enumerate,float}
+\usepackage{libertine}
+\usepackage{microtype}
+
+\usepackage{tabularx} % работа с таблицами https://ru.overleaf.com/learn/latex/Tables
+
+\usepackage{graphicx}
+\usepackage{caption}
+\graphicspath{{pictures}}
+\usepackage{tikz}
+
+% \RequirePackage[left=20mm,right=10mm,top=20mm,bottom=20mm,headsep=0pt,includefoot]{geometry}
+% Если вас тошнит от поля в 10мм --- увеличивайте до 20-ти, ну и про переплёт не забывайте:
+\usepackage{geometry}
+\geometry{
+	left=30mm,
+	top=20mm,
+	right=10mm,
+	bottom=20mm
+}
+
+\usepackage{listings} %подлючения листинга для кода
+\usepackage{xcolor}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.3,0.3,0.3}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+% Значения по умолчанию
+\lstset{
+	rulecolor=\color{black},
+	commentstyle=\color{codegreen},
+	keywordstyle=\color{magenta},
+	numberstyle=\scriptsize\color{codegray},
+	stringstyle=\color{codepurple},
+	basicstyle= \ttfamily\footnotesize,
+	breakatwhitespace=true,% разрыв строк только на whitespacce
+	breaklines=true,       % переносить длинные строки
+	captionpos=b,          % подписи снизу -- вроде не надо
+	numbers=left,          % нумерация слева
+	numberstyle=\footnotesize,
+	showspaces=false,      % показывать пробелы подчеркиваниями -- идиотизм 70-х годов
+	showstringspaces=false,
+	showtabs=false,        % и табы тоже
+	stepnumber=1,
+	tabsize=2,              % кому нужны табы по 8 символов?
+	frame=single,
+	stepnumber=1,
+	extendedchars=\true,
+	%numbersep=-6pt
+}
+
+% Стиль для псевдокода: строчки обычно короткие, поэтому размер шрифта побольше
+\lstdefinestyle{pseudocode}{
+	basicstyle=\small,
+	keywordstyle=\color{black}\bfseries\underbar,
+	language=Pseudocode,
+	numberstyle=\footnotesize,
+	commentstyle=\footnotesize\it
+}
+
+% Стиль для обычного кода: маленький шрифт
+\lstdefinestyle{realcode}{
+	basicstyle=\scriptsize,
+	numberstyle=\footnotesize
+}
+
+% Стиль для коротких кусков обычного кода: средний шрифт
+\lstdefinestyle{simplecode}{
+	basicstyle=\footnotesize,
+	numberstyle=\footnotesize
+}
+
+\renewcommand\lstlistingname{Листинг}
+\renewcommand\lstlistlistingname{Листинги}
+
+
+\usepackage{blindtext}
+
+% Добавляем гипертекстовое оглавление в PDF
+\usepackage{amssymb}
+\usepackage{hyperref}
+\hypersetup{
+	colorlinks=true,
+	unicode=true,
+	urlcolor=black,
+	linkcolor=black,
+	anchorcolor=black,
+	citecolor=black,
+	menucolor=black,
+	filecolor=black
+}
+\urlstyle{same}
+
+\newcommand\x{{\textbf{x}}}
+\newcommand\y{{\textbf{y}}}
+
+\usepackage[most]{tcolorbox}
+\newtcbtheorem{theo}%
+{Theorem}{}{theorem}
+
+\begin{document}
+	\fefupage{Середа С.}{Б9119-01.03.02систпро}{РЕФЕРАТ}{}{т}{Уравнения математической физики}
+	\tableofcontents
+	\pagebreak
+	\mysection{Первый уровень}
+		Пример
+		\mysubsection{Второй уровень}
+			Пример
+			\mysubsubsection{Третий уровень}
+				Пример
+\end{document}

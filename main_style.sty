@@ -1,0 +1,144 @@
+\RequirePackage[russian]{babel}
+\RequirePackage[utf8]{inputenc}
+\RequirePackage{multicol}
+\RequirePackage{graphicx}
+\RequirePackage[useregional,calc]{datetime2}
+
+\setlength{\parskip}{1ex} % разрыв между абзацами
+\setlength\parindent{15mm} %Абзацный отступ - 15..17 мм
+
+% блок для удобной работы с датой
+\def\shortyearstart#1{\expandafter\shortyearhelperstart#1}
+\def\shortyearfinish#1{\expandafter\shortyearhelperfinish#1}
+\def\shortyearhelperfinish#1#2#3#4{#3#4}
+\def\shortyearhelperstart#1#2#3#4{#1#2}
+
+% структура даты « дата » месяц 20 год г.
+\renewcommand\daterussian{
+	\def\today{
+		\DTMsavenow{thisone}
+		<<\underline{\hspace{5pt}\DTMfetchday{thisone}\hspace{7pt}\vphantom{p}}>> \underline{\hspace{10pt}\DTMrussianmonthname{\DTMfetchmonth{thisone}}\hspace{10pt}\vphantom{pl}} \shortyearstart{\the\year}\underline{\hspace{5pt}\vphantom{p}\shortyearfinish{\the\year}\hspace{5pt}} г.
+	}
+}
+
+% рисование двойной черты
+\newcommand\fefurule[3]{ 
+	\rule{\linewidth}{ #1 }
+
+	\vspace{\dimexpr - \baselineskip + 1mm - 1pt + #3}
+
+	\rule{\linewidth}{ #2 }
+}
+
+% генерация двфу титульного листа
+\newcommand\fefupage[6]{
+	\thispagestyle{empty}
+	{
+	\parskip=0pt
+	\parindent=0pt
+	{\centering
+		%\vspace*{-3.7cm} %если требуется убрать геомерию
+		{\includegraphics[height=1.7cm]{dvfu.png}}
+		
+		{\fontsize{9}{9} \selectfont МИНИСТЕРСТВО НАУКИ И ВЫСШЕГО ОБРАЗОВАНИЯ РОССИЙСКОЙ ФЕДЕРАЦИИ}\\
+		{\fontsize{10}{10} \selectfont Федеральное государственное автономное образовательное учреждение высшего образования}\\
+		{\textbf{<<Дальневосточный федеральный университет>>}}
+		
+		{\textbf{(ДВФУ)}}
+		
+	}
+	\fefurule{3pt}{1pt}{0pt}
+	
+	{\centering
+		{\textbf{
+			ИНСТИТУТ МАТЕМАТИКИ И КОМПЬЮТЕРНЫХ ТЕХНОЛОГИЙ
+			\\\vspace{19pt}
+			Департамент математического и компьютерного моделирования
+			\vspace{37pt}\\
+		}}
+		{\textbf{#3}}
+		\\\vspace{19pt}
+		#4 по дисциплине
+		
+		<<#6>>
+		\\\vspace{19pt}
+		Направление подготовки
+		
+		01.03.02 <<Прикладная математика и информатика>>
+		
+	}
+	\vspace{14pt}
+	\begin{multicols}{2}
+		\vfill{\null}
+		\columnbreak
+		{
+			Выполнил студен#5
+			
+			группы #2
+			
+			\begin{tikzpicture} %здесь можно отредачить отступы твоей подписи и ФИО
+				\draw (0, 0) node[inner sep=0] {$\underset{\textit{(ФИО)}}{\hspace{7pt}\underline{\text{#1}\vphantom{pl}\hspace{7pt}}\hspace{5pt}} $};
+				\draw (3.7, 0) node[inner sep=0] {$\underset{\textit{(подпись)}}{\underline{\vphantom{pl}\hspace{4cm}}}$};
+				\draw (3.7, 0.4) node[inner sep=0] {\includegraphics[width=4cm]{signature.png}};%если нужна подпись, вставить в скобки: \includegraphics[width=4cm]{signature.png}	
+			\end{tikzpicture}
+			
+			%Проверил профессор д. ф.-м. н.
+			
+			%\vspace{10pt}
+			
+			%$\underset{\textit{(ФИО)}}{\hspace{7pt}\underline{\text{Алексеев Г. В.}\vphantom{pl}\hspace{7pt}}\hspace{5pt}}$
+			%$\underset{\textit{(подпись)}}{\underline{\vphantom{p}\hspace{3cm}}}$
+			
+			\vspace{10pt}
+			\today
+		}
+	\end{multicols}
+	\vfill{\null}
+	{
+		\centering
+		{\textbf{г. Владивосток}}
+		
+		{\textbf{2021}}
+		
+	}
+	%\vspace*{-2cm} %если требуется убрать геомерию
+	\pagebreak
+	}
+}
+
+\newcommand{\mysection}[1]{ %создание заголовка
+	\section*{#1}
+	\addcontentsline{toc}{section}{#1}
+}
+
+\newcommand{\mysubsection}[1]{ %создание подзаголовка
+	\subsection*{#1}
+	\addcontentsline{toc}{subsection}{#1}
+}
+
+\newcommand{\mysubsubsection}[1]{ %создание подподзаголовка
+	\subsubsection*{#1}
+	\addcontentsline{toc}{subsubsection}{#1}
+}
+
+\newcommand{\mypicture}[2]{ %вставка картинки с описанием
+	\begin{figure}[h!]
+		\center
+		\includegraphics[width=0.8\linewidth]{#1}
+		\caption{График уравнения #2}
+	\end{figure}
+}
+
+\newcommand{\mycharacter}[2]{ %вставка
+	\begin{tabular}[t]{p{110pt}p{315pt}}
+		\textit{Характеристика:} & #1\\
+	\end{tabular}
+}
+
+\newcommand{\intl}{\int\limits}
+\newcommand{\abs}[1]{\left\vert #1 \right\vert}
+\newcommand{\norm}[1]{\left\Vert #1 \right\Vert}
+\newcommand{\Lp}{\mathrm{L}}
+\newcommand{\Yp}{\mathrm{Y}}
+\newcommand{\Up}{\mathrm{U}}
+\newcommand{\Lg}{\mathcal{L}}
